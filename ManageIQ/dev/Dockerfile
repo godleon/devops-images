@@ -14,4 +14,6 @@ RUN set -x && \
     grep -q '^local\s' /etc/postgresql/10/main/pg_hba.conf || echo "local all all trust" | tee -a /etc/postgresql/10/main/pg_hba.conf && \
     sed -i.bak 's/\(^local\s*\w*\s*\w*\s*\)\(peer$\)/\1trust/' /etc/postgresql/10/main/pg_hba.conf
 
+ADD prepare-env.sh .
+
 ENTRYPOINT ["/bin/bash", "-c", "-l"]
